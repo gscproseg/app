@@ -57,7 +57,7 @@ st.write("Desenvolvido por [Carneiro, G.S](http://lattes.cnpq.br/377104762625954
 
 #######################################################
 
-# Conteúdo da página "MYXOscopeAPP"
+# Conteúdo da página "MyxoNet"
 with tab2:
     st.header("MyxoNet")
     
