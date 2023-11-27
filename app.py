@@ -47,7 +47,7 @@ with tab1:
             )
         st.subheader("| Saúde Única")
         st.write(
-            '<p style="color:#9c9d9f">A abordagem da Saúde Única promove uma visão integrada e multissetorial da saúde, envolvendo humanos, animais e ecossistemas. Reconhece a interdependência desses elementos e mobiliza diversos setores e disciplinas para promover o bem-estar e lidar com ameaças à saúde e aos ecossistemas, incluindo água limpa, segurança alimentar, mudanças climáticas e desenvolvimento sustentável.</p>',
+            '<p style="color:#9c9d9f">Adicionar.</p>',
             unsafe_allow_html=True,
             )
 
