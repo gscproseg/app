@@ -128,6 +128,42 @@ with tab2:
     if __name__ == "__main__":
          main()
 
+def display_detection_results(predictions):
+    st.subheader("Detecções na imagem")
+    for pred in predictions:
+        st.write(f"Objeto: {pred['label']}, Confiança: {pred['confidence']}")
+        st.image(pred['image'], caption='Detecção', use_column_width=True)
+
+def main():
+    object = upload_image()
+
+    if object:
+        prediction = False
+        image_obj = Image.open(object['file'])
+
+        col1, col2 = st.columns(2)
+
+        with col1:
+            st.info('Pré-visualização da imagem')
+            st.image(image_obj)
+
+        with col2:
+            st.subheader('Confira abaixo os detalhes do arquivo')
+            st.json(object['details'])
+            button = st.button('Descubra qual o Myxozoário pode estar presente em sua imagem')
+            if button:
+                with st.spinner("Obtendo Objetos de imagem. Aguarde"):
+                    image_array = np.array(image_obj)
+                    pred_img = yolo.predictions(image_array)
+                    prediction = True
+
+        if prediction:
+            display_detection_results(pred_img)
+
+if __name__ == "__main__":
+    main()
+
+
 
 # Conteúdo da página "MYXOscopeAPP"
 with tab3:
