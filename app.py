@@ -70,7 +70,7 @@ from yolo_predictions import YOLO_Pred
 from PIL import Image
 import numpy as np
 
-st.set_page_config(page_title="YOLO Object Detection",
+st.set_page_config(page_title="MixoNet",
                    layout='wide',
                    page_icon='./images/object.png')
 
