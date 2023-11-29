@@ -65,21 +65,20 @@ st.write("Desenvolvido por [Carneiro, G.S](http://lattes.cnpq.br/377104762625954
 
 
 #######################################################
-import streamlit as st
+
 from yolo_predictions import YOLO_Pred
 from PIL import Image
 import numpy as np
 
-st.set_page_config(page_title="MixoNet",
+st.set_page_config(page_title="MyxoNet",
                    layout='wide',
-                   page_icon='./images/object.png')
 
 st.header('Get Object Detection for any Image')
 st.write('Please Upload Image to get detections')
 
 with st.spinner('Please wait while your model is loading'):
-    yolo = YOLO_Pred(onnx_model='best.onnx',
-                    data_yaml='data.yaml')
+    yolo = YOLO_Pred(onnx_model='./best.onnx',
+                    data_yaml='./data.yaml')
     #st.balloons()
 
 def upload_image():
@@ -139,6 +138,10 @@ def main():
     
 if __name__ == "__main__":
     main()
+
+# Adicione as informações adicionais
+st.write("Desenvolvido por [Carneiro, G.S](http://lattes.cnpq.br/3771047626259544)")
+
 
 # Adicione as informações adicionais
 st.write("Desenvolvido por [Carneiro, G.S](http://lattes.cnpq.br/3771047626259544)")
