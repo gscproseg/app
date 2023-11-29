@@ -70,8 +70,6 @@ from yolo_predictions import YOLO_Pred
 from PIL import Image
 import numpy as np
 
-st.set_page_config(page_title="MyxoNet",
-                   layout='wide',
 
 st.header('Get Object Detection for any Image')
 st.write('Please Upload Image to get detections')
