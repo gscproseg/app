@@ -72,8 +72,8 @@ st.header('Get Object Detection for any Image')
 st.write('Please Upload Image to get detections')
 
 with st.spinner('Please wait while your model is loading'):
-    yolo = YOLO_Pred(onnx_model='./models/best.onnx',
-                    data_yaml='./models/data.yaml')
+    yolo = YOLO_Pred(onnx_model='./best.onnx',
+                    data_yaml='./data.yaml')
     #st.balloons()
 
 def upload_image():
