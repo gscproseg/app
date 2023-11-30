@@ -62,10 +62,8 @@ with tab1:
             unsafe_allow_html=True,
             )
 
-# Adicione as informações adicionais
-st.write("Desenvolvido por [Carneiro, G.S](http://lattes.cnpq.br/3771047626259544)")
-
-pass
+    # Adicione as informações adicionais
+    st.write("Desenvolvido por [Carneiro, G.S](http://lattes.cnpq.br/3771047626259544)")
 
 #######################################################
 
@@ -101,7 +99,7 @@ with tab2:
 
             else:
                 st.error('Tipo de arquivo de imagem INVALIDO')
-                st.error('Upload only png, jpg, jpeg')
+                st.error('Envie apenas arquivos nos formatos png, jpg e jpeg')
                 return None
 
 #    def main():
@@ -175,9 +173,9 @@ with tab2:
     if __name__ == "__main__":
         main()
          
-# Adicione as informações adicionais
-st.write("Desenvolvido por [Carneiro, G.S](http://lattes.cnpq.br/3771047626259544)")
-pass
+    # Adicione as informações adicionais
+    st.write("Desenvolvido por [Carneiro, G.S](http://lattes.cnpq.br/3771047626259544)")
+    pass
 
 
 # Conteúdo da página "USB"
