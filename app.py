@@ -62,8 +62,8 @@ with tab1:
             unsafe_allow_html=True,
             )
 
-    # Adicione as informações adicionais
-    st.write("Desenvolvido por [Carneiro, G.S](http://lattes.cnpq.br/3771047626259544)")
+# Adicione as informações adicionais
+st.write("Desenvolvido por [Carneiro, G.S](http://lattes.cnpq.br/3771047626259544)")
 
 #######################################################
 
@@ -138,9 +138,6 @@ with tab2:
     if __name__ == "__main__":
          main()
 
-         
-# Adicione as informações adicionais
-st.write("Desenvolvido por [Carneiro, G.S](http://lattes.cnpq.br/3771047626259544)")
 pass
 
 
@@ -173,11 +170,9 @@ with tab3:
 
 with tab4:
     st.subheader("| A Classe Myxozoa")
+      
     
-    # Adicione as informações adicionais
-    st.write("Desenvolvido por [Carneiro, G.S](http://lattes.cnpq.br/3771047626259544)")    
-    
-    pass
+pass
 
 
 
