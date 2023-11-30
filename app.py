@@ -101,7 +101,7 @@ with tab2:
 
             else:
                 st.error('Tipo de arquivo de imagem INVALIDO')
-                st.error('Upload only png, jpg, jpeg')
+                st.error('Envie apenas arquivos nos formatos png, jpg e jpeg')
                 return None
 
     def main():
