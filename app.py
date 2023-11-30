@@ -1,3 +1,5 @@
+
+
 import streamlit as st
 
 # Configuração da página
@@ -65,10 +67,10 @@ st.write("Desenvolvido por [Carneiro, G.S](http://lattes.cnpq.br/377104762625954
 
 pass
 
-
 #######################################################
 
 with tab2:
+
     st.header("MyxoNet")
     
     from yolo_predictions import YOLO_Pred
@@ -137,6 +139,10 @@ with tab2:
 
     if __name__ == "__main__":
          main()
+         
+# Adicione as informações adicionais
+st.write("Desenvolvido por [Carneiro, G.S](http://lattes.cnpq.br/3771047626259544)")
+pass
 
 
 # Conteúdo da página "MYXOscopeAPP"
