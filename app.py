@@ -79,7 +79,7 @@ with tab2:
 
     with st.spinner('Por favor, aguarde enquanto analisamos a sua imagem'):
         yolo = YOLO_Pred(onnx_model='./best.onnx',
-                         data_yaml='./data.yaml')
+                        data_yaml='./data.yaml')
         #st.balloons()
 
     def upload_image():
