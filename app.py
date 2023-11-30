@@ -85,7 +85,7 @@ with tab1:
 
     def upload_image():
     # Upload Image
-    image_file = st.file_uploader(label='Upload Image')
+        image_file = st.file_uploader(label='Upload Image')
     if image_file is not None:
         size_mb = image_file.size/(1024**2)
         file_details = {"filename":image_file.name,
