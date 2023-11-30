@@ -78,8 +78,8 @@ with tab1:
     st.write('Please Upload Image to get detections')
 
     with st.spinner('Please wait while your model is loading'):
-    yolo = YOLO_Pred(onnx_model='./best.onnx',
-                    data_yaml='./data.yaml')
+    yolo = YOLO_Pred(onnx_model='best.onnx',
+                    data_yaml='data.yaml')
     #st.balloons()
 
     def upload_image():
@@ -154,8 +154,8 @@ with tab3:
     from yolo_predictions import YOLO_Pred
 
     # load yolo model
-    yolo = YOLO_Pred('./best.onnx',
-                    './data.yaml')
+    yolo = YOLO_Pred('best.onnx',
+                    'data.yaml')
 
 
     def video_frame_callback(frame):
