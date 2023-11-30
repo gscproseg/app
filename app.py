@@ -69,6 +69,7 @@ pass
 #######################################################
 
 with tab1:
+    
     from yolo_predictions import YOLO_Pred
     from PIL import Image
     import numpy as np
@@ -78,8 +79,8 @@ with tab1:
     st.write('Please Upload Image to get detections')
 
     with st.spinner('Please wait while your model is loading'):
-    yolo = YOLO_Pred(onnx_model='best.onnx',
-                    data_yaml='data.yaml')
+        yolo = YOLO_Pred(onnx_model='best.onnx',
+                        data_yaml='data.yaml')
     #st.balloons()
 
     def upload_image():
