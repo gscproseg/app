@@ -139,9 +139,9 @@ with tab2:
          main()
 
          
-    # Adicione as informações adicionais
-    st.write("Desenvolvido por [Carneiro, G.S](http://lattes.cnpq.br/3771047626259544)")
-    pass
+# Adicione as informações adicionais
+st.write("Desenvolvido por [Carneiro, G.S](http://lattes.cnpq.br/3771047626259544)")
+pass
 
 
 # Conteúdo da página "USB"
@@ -176,6 +176,7 @@ with tab4:
     
     # Adicione as informações adicionais
     st.write("Desenvolvido por [Carneiro, G.S](http://lattes.cnpq.br/3771047626259544)")    
+    
     pass
 
 
