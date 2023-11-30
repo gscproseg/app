@@ -174,9 +174,9 @@ with tab3:
 with tab4:
     st.subheader("| A Classe Myxozoa")
     
-    # Adicione as informações adicionais
-    st.write("Desenvolvido por [Carneiro, G.S](http://lattes.cnpq.br/3771047626259544)")    
-    pass
+# Adicione as informações adicionais
+st.write("Desenvolvido por [Carneiro, G.S](http://lattes.cnpq.br/3771047626259544)")    
+pass
 
 
 
