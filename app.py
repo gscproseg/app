@@ -104,6 +104,43 @@ with tab2:
                 st.error('Upload only png, jpg, jpeg')
                 return None
 
+#    def main():
+#        object = upload_image()
+#
+#        if object:
+#            prediction = False
+#            image_obj = Image.open(object['file'])
+#
+#            col1, col2 = st.columns(2)#
+#
+#            with col1:
+#                st.info('Pré-visualização da imagem')
+#                st.image(image_obj)#
+#
+#           with col2:
+#                st.subheader('Confira abaixo os detalhes do arquivo')
+#                st.json(object['details'])
+#                button = st.button('Descubra qual o Myxozoário pode estar presente em sua imagem')
+#                if button:
+#                    with st.spinner("""
+#                    Obtendo Objets de imagem. Aguarde
+#                    """):
+#                        # below command will convert
+#                        # obj to array
+#                        image_array = np.array(image_obj)
+#                        pred_img = yolo.predictions(image_array)
+#                        pred_img_obj = Image.fromarray(pred_img)
+#                        prediction = True
+#
+#            if prediction:
+#                st.subheader("Imagem com a possivel detecção")
+#                st.caption("Detecção de Myxozoários")
+#                st.image(pred_img_obj)
+#
+#    if __name__ == "__main__":
+#         main()
+
+
     def main():
         object = upload_image()
 
@@ -122,30 +159,28 @@ with tab2:
                 st.json(object['details'])
                 button = st.button('Descubra qual o Myxozoário pode estar presente em sua imagem')
                 if button:
-                    with st.spinner("""
-                    Obtendo Objets de imagem. Aguarde
-                    """):
-                        # below command will convert
-                        # obj to array
+                    spinner = st.spinner("Obtendo Objetos de imagem. Aguarde")
+                    with spinner:
                         image_array = np.array(image_obj)
                         pred_img = yolo.predictions(image_array)
                         pred_img_obj = Image.fromarray(pred_img)
                         prediction = True
 
             if prediction:
-                st.subheader("Imagem com a possivel detecção")
-                st.caption("Detecção de Myxozoários")
-                st.image(pred_img_obj)
+                display_detection_results(pred_img)
+
+        # Limpeza de widgets antigos
+        st.empty()
 
     if __name__ == "__main__":
-         main()
+        main()
          
 # Adicione as informações adicionais
 st.write("Desenvolvido por [Carneiro, G.S](http://lattes.cnpq.br/3771047626259544)")
 pass
 
 
-# Conteúdo da página "MYXOscopeAPP"
+# Conteúdo da página "USB"
 with tab3:
     st.header("USB")
 
@@ -174,45 +209,11 @@ with tab3:
 
 with tab4:
     st.subheader("| A Classe Myxozoa")
+    
+    # Adicione as informações adicionais
+    st.write("Desenvolvido por [Carneiro, G.S](http://lattes.cnpq.br/3771047626259544)")    
     pass
 
-    # Adicione as informações adicionais
-    st.write("Desenvolvido por [Carneiro, G.S](http://lattes.cnpq.br/3771047626259544)")
+
 
 #####################################################################################
-
-# Conteúdo da página "MYXOscopeAPP"
-with tab3:
-    st.header("USB")
-
-    from streamlit_webrtc import webrtc_streamer
-    import av
-    from yolo_predictions import YOLO_Pred
-
-    # load yolo model
-    yolo = YOLO_Pred('./best.onnx',
-                    './data.yaml')
-
-
-    def video_frame_callback(frame):
-        img = frame.to_ndarray(format="bgr24")
-        # any operation 
-        #flipped = img[::-1,:,:]
-        pred_img = yolo.predictions(img)
-
-        return av.VideoFrame.from_ndarray(pred_img, format="bgr24")
-
-
-    webrtc_streamer(key="example", 
-                    video_frame_callback=video_frame_callback,
-                    media_stream_constraints={"video":True,"audio":False})
-
-
-with tab4:
-    st.subheader("| A Classe Myxozoa")
-
-
-# Adicione as informações adicionais
-st.write("Desenvolvido por [Carneiro, G.S](http://lattes.cnpq.br/3771047626259544)")
-
-pass
