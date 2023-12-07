@@ -32,7 +32,7 @@ class YOLO_Pred():
         input_image = np.zeros((max_rc,max_rc,3),dtype=np.uint8)
         input_image[0:row,0:col] = image
         # step-2: get prediction from square array
-        INPUT_WH_YOLO = 640
+        INPUT_WH_YOLO = 1280
         blob = cv2.dnn.blobFromImage(input_image,1/255,(INPUT_WH_YOLO,INPUT_WH_YOLO),swapRB=True,crop=False)
         self.yolo.setInput(blob)
         preds = self.yolo.forward() # detection or prediction from YOLO
@@ -104,11 +104,3 @@ class YOLO_Pred():
         np.random.seed(10)
         colors = np.random.randint(100,255,size=(self.nc,3)).tolist()
         return tuple(colors[ID])
-        
-        
-    
-    
-    
-
-
-
