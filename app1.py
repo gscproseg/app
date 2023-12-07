@@ -72,45 +72,78 @@ st.write("Desenvolvido por [Carneiro, G.S](http://lattes.cnpq.br/377104762625954
 #######################################################
 
 with tab2:
+
     st.header("MyxoNet")
     
-    # Carregando o modelo YOLO
-    with st.spinner('Por favor, aguarde enquanto inicializamos o modelo YOLO'):
-        yolo = YOLO_Pred(onnx_model='./best.onnx', data_yaml='./data.yaml')
+    from yolo_predictions import YOLO_Pred
+    from PIL import Image
+    import numpy as np
 
-    # Upload da imagem
     st.write('Por favor, carregue a imagem para obter a identificação')
-    object = upload_image()
 
-    # Se uma imagem for carregada
-    if object:
-        image_obj = Image.open(object['file'])
-        
-        # Mostrando a pré-visualização da imagem
-        st.info('Pré-visualização da imagem')
-        st.image(image_obj)
+    with st.spinner('Por favor, aguarde enquanto analisamos a sua imagem'):
+        yolo = YOLO_Pred(onnx_model='./best.onnx',
+                        data_yaml='./data.yaml')
+        #st.balloons()
 
-        # Mostrando os detalhes do arquivo
-        st.subheader('Confira abaixo os detalhes do arquivo')
-        st.json(object['details'])
+    def upload_image():
+        # Upload Image
+        image_file = st.file_uploader(label='Enviar Imagem')
+        if image_file is not None:
+            size_mb = image_file.size / (1024 ** 2)
+            file_details = {"filename": image_file.name,
+                            "filetype": image_file.type,
+                            "filesize": "{:,.2f} MB".format(size_mb)}
+            #st.json(file_details)
+            # validate file
+            if file_details['filetype'] in ('image/png', 'image/jpeg'):
+                st.success('Tipo de arquivo imagem VALIDO (png ou jpeg)')
+                return {"file": image_file,
+                        "details": file_details}
 
-        # Botão para realizar a detecção
-        button = st.button('Descubra qual o Myxozoário pode estar presente em sua imagem')
+            else:
+                st.error('Tipo de arquivo de imagem INVALIDO')
+                st.error('Envie apenas arquivos nos formatos png, jpg e jpeg')
+                return None
 
-        # Se o botão for pressionado
-        if button:
-            with st.spinner('Obtendo Objetos de imagem. Aguarde...'):
-                # Convertendo a imagem para um array
-                image_array = np.array(image_obj)
-                
-                # Realizando a detecção com o modelo YOLO
-                pred_img = yolo.predictions(image_array)
-                pred_img_obj = Image.fromarray(pred_img)
-                
-                # Exibindo a imagem com a possível detecção
-                st.subheader("Imagem com a possível detecção")
+    def main():
+        object = upload_image()
+
+        if object:
+            prediction = False
+            image_obj = Image.open(object['file'])
+
+            col1, col2 = st.columns(2)#
+
+            with col1:
+                st.info('Pré-visualização da imagem')
+                st.image(image_obj)#
+
+            with col2:
+                st.subheader('Confira abaixo os detalhes do arquivo')
+                st.json(object['details'])
+                button = st.button('Descubra qual o Myxozoário pode estar presente em sua imagem')
+                if button:
+                    with st.spinner("""
+                    Obtendo Objets de imagem. Aguarde
+                    """):
+                        # below command will convert
+                        # obj to array
+                        image_array = np.array(image_obj)
+                        pred_img = yolo.predictions(image_array)
+                        pred_img_obj = Image.fromarray(pred_img)
+                        prediction = True
+
+            if prediction:
+                st.subheader("Imagem com a possivel detecção")
                 st.caption("Detecção de Myxozoários")
                 st.image(pred_img_obj)
+
+    if __name__ == "__main__":
+         main()
+
+pass
+
 
 #######################################################
 # Conteúdo da página "USB"
