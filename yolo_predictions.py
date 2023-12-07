@@ -37,7 +37,7 @@ class YOLO_Pred():
         input_image = np.zeros((max_hw, max_hw, 3), dtype=np.uint8)
         input_image[0:h, 0:w] = image
         # step-2: get prediction from square array
-        INPUT_WH_YOLO = 640
+        INPUT_WH_YOLO = 1280
         blob = cv2.dnn.blobFromImage(input_image, 1/255, (INPUT_WH_YOLO, INPUT_WH_YOLO), swapRB=True, crop=False)
         self.yolo.setInput(blob)
         preds = self.yolo.forward()  # detection or prediction from YOLO
