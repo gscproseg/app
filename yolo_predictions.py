@@ -20,6 +20,9 @@ class YOLO_Pred():
         self.yolo.setPreferableBackend(cv2.dnn.DNN_BACKEND_OPENCV)
         self.yolo.setPreferableTarget(cv2.dnn.DNN_TARGET_CPU)
 
+        if self.yolo.empty():
+            print("Erro ao carregar o modelo YOLO.")
+
     def predictions(self, image):
         # Modifique esta função para lidar com diferentes formatos de imagem
 
@@ -39,7 +42,10 @@ class YOLO_Pred():
         # step-2: get prediction from square array
         INPUT_WH_YOLO = 1280
         blob = cv2.dnn.blobFromImage(input_image, 1/255, (INPUT_WH_YOLO, INPUT_WH_YOLO), swapRB=True, crop=False)
-        
+
+        print("Shape of input image:", input_image.shape)
+        print("Shape of blob:", blob.shape)
+
         if blob is not None:
             self.yolo.setInput(blob)
             preds = self.yolo.forward()  # detection or prediction from YOLO
