@@ -47,9 +47,12 @@ class YOLO_Pred():
         print("Shape of blob:", blob.shape)
 
         if blob is not None:
-            self.yolo.setInput(blob)
-            preds = self.yolo.forward()  # detection or prediction from YOLO
-            # Restante do código...
+            try:
+                self.yolo.setInput(blob)
+                preds = self.yolo.forward()  # detection or prediction from YOLO
+                print("Predictions shape:", preds.shape)
+            except cv2.error as e:
+                print("Erro ao executar o modelo YOLO:", e)
         else:
             print("Erro: blob de entrada é None.")
 
