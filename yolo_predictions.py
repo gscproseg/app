@@ -103,8 +103,23 @@ class YOLO_Pred():
             
             
         return image
+
+###################################################################################
+        def get_detected_classes(self):
+            detected_classes = []
+            for ind in self.index:
+                x, y, w, h = self.boxes_np[ind]
+                bb_conf = int(self.confidences_np[ind]*100)
+                class_id = self.classes[ind]
+                class_name = self.labels[class_id]
+                detected_classes.append({
+                    'label': class_name,
+                    'confidence': self.confidences_np[ind],
+                    'box': [x, y, w, h]
+                })
+            return detected_classes
     
-    
+   ################################################################################# 
     def generate_colors(self,ID):
         np.random.seed(10)
         colors = np.random.randint(100,255,size=(self.nc,3)).tolist()
