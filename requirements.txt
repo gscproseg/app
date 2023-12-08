@@ -12,4 +12,3 @@ requests-toolbelt==0.10.1
 streamlit
 streamlit-webrtc
 tornado==6.2
-wget
