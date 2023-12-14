@@ -49,64 +49,40 @@ class YOLO_Pred():
         x_factor = image_w/INPUT_WH_YOLO
         y_factor = image_h/INPUT_WH_YOLO
 
+
+        
         for i in range(len(detections)):
             row = detections[i]
-            confidence = row[4]
-        
-            if confidence > 0.25:
-                class_score = row[5:].max()
-                class_id = row[5:].argmax()
-        
-                if class_score > 0.2:
+            confidence = row[4] # confidence of detection an object
+            if confidence > 0.4:
+                class_score = row[5:].max() # maximum probability from 20 objects
+                class_id = row[5:].argmax() # get the index position at which max probabilty occur
+
+                if class_score > 0.25:
                     cx, cy, w, h = row[0:4]
-                    left = int((cx - 0.5 * w) * x_factor)
-                    top = int((cy - 0.5 * h) * y_factor)
-                    width = int(w * x_factor)
-                    height = int(h * y_factor)
-        
-                    box = [left, top, width, height]
-        
-                    # Debug print
-                    print(f"Adding box: {box}")
-        
-                    # Append box to the list
-                    boxes.append(box)
-
-# ...
-        
-        
-        #for i in range(len(detections)):
-            #row = detections[i]
-            #confidence = row[4] # confidence of detection an object
-            #if confidence > 0.4:
-                #class_score = row[5:].max() # maximum probability from 20 objects
-                #class_id = row[5:].argmax() # get the index position at which max probabilty occur
-
-                #if class_score > 0.25:
-                    #cx, cy, w, h = row[0:4]
                     # construct bounding from four values
-                    # left, top, width and height
-                    #left = int((cx - 0.5*w)*x_factor)
-                    #top = int((cy - 0.5*h)*y_factor)
-                    #width = int(w*x_factor)
-                    #height = int(h*y_factor)
+                    left, top, width and height
+                    left = int((cx - 0.5*w)*x_factor)
+                    top = int((cy - 0.5*h)*y_factor)
+                    width = int(w*x_factor)
+                    height = int(h*y_factor)
 
-                    #box = np.array([left,top,width,height])
+                    box = np.array([left,top,width,height])
 
                     # append values into the list
-                    #confidences.append(confidence)
-                    #boxes.append(box)
-                    #classes.append(class_id)
+                    confidences.append(confidence)
+                    boxes.append(box)
+                    classes.append(class_id)
 
         # clean
-        #boxes_np = np.array(boxes).tolist()
-        #confidences_np = np.array(confidences).tolist()
+        boxes_np = np.array(boxes).tolist()
+        confidences_np = np.array(confidences).tolist()
 
         # NMS
-        #index = np.array(cv2.dnn.NMSBoxes(boxes_np,confidences_np,0.25,0.45)).flatten()
+        index = np.array(cv2.dnn.NMSBoxes(boxes_np,confidences_np,0.25,0.45)).flatten()
 
          # NMS
-        index = np.array(cv2.dnn.NMSBoxes(boxes_np,confidences_np,0.2,0.9)).flatten()
+        #index = np.array(cv2.dnn.NMSBoxes(boxes_np,confidences_np,0.2,0.9)).flatten()
 
 
         # Draw the Bounding
